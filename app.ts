@@ -4,5 +4,8 @@ const person = {
   hobbies: ['Sports', 'Cooking']
 };
 
+
+console.log(person.name); 
+
 let favoriteActivities: string[]; 
-console.log(person); 
+person.hobbies.forEach(hobby => console.log(hobby));
