@@ -1,3 +1,4 @@
+
 function combine(input1: number | string, input2: number | string, ) {
   let result;
   if (typeof input1 === 'number' && typeof input2 ==='number') {
@@ -8,5 +9,7 @@ function combine(input1: number | string, input2: number | string, ) {
     return result;
   
 }
+
+console.log(combine(30, 26));
 
 console.log(combine('Max', 'Anna'));

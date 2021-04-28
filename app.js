@@ -8,4 +8,5 @@ function combine(input1, input2) {
     }
     return result;
 }
+console.log(combine(30, 26));
 console.log(combine('Max', 'Anna'));
