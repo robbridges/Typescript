@@ -1,15 +1,14 @@
-function add(n1, n2) {
-    return n1 + n2;
+// we don't know what user input would supply us, so we throw it as an unknown variable. better than any!
+var userInput;
+var userName;
+userInput = 5;
+userInput = 'Max';
+// we have to type check userInput before we assign userName to user input
+if (typeof userInput === 'string') {
+    userName = userInput;
 }
-function printResult(num) {
-    console.log('Result: ' + num);
+// this function throws an object error, it should never actually return anything as the throws keyword crashes our script. 
+function generateError(message, code) {
+    throw { message: message, errorCode: code };
 }
-function addAndHandle(n1, n2, cb) {
-    var result = n1 + n2;
-    cb(result);
-}
-printResult(add(5, 12));
-var combineValues;
-combineValues = add;
-console.log(combineValues(8, 8));
-addAndHandle(10, 20, function (result) { console.log(result); });
+generateError('An Error Occured', 500);
