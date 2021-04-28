@@ -1,19 +1,11 @@
-var userRole;
-(function (userRole) {
-    userRole[userRole["ADMIN"] = 0] = "ADMIN";
-    userRole[userRole["READ_ONLY"] = 1] = "READ_ONLY";
-    userRole[userRole["AUTHOR"] = 2] = "AUTHOR";
-})(userRole || (userRole = {}));
-;
-var person = {
-    name: 'Rob',
-    age: 30,
-    hobbies: ['Sports', 'Cooking'],
-    role: [2, 'author'],
-    userRole: userRole.ADMIN
-};
-person.role.push('admin');
-//person.role[1] = 10;
-console.log(person.name);
-var favoriteActivities;
-person.hobbies.forEach(function (hobby) { return console.log(hobby); });
+function combine(input1, input2) {
+    var result;
+    if (typeof input1 === 'number' && typeof input2 === 'number') {
+        result = input1 + input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
+console.log(combine('Max', 'Anna'));
