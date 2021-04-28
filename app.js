@@ -12,4 +12,4 @@ if (typeof userInput === 'string') {
 function generateError(message, code) {
     throw { message: message, errorCode: code };
 }
-generateError('An Error Occured', 500);
+console.log(`Yeah it's working`);

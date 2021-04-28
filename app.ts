@@ -15,4 +15,4 @@ function generateError(message: string, code: number): never {
   throw {message: message, errorCode: code};
 }
 
-generateError('An Error Occured', 500);
+console.log(`Yeah it's working`);
