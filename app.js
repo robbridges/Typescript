@@ -12,4 +12,19 @@ if (typeof userInput === 'string') {
 function generateError(message, code) {
     throw { message: message, errorCode: code };
 }
-console.log(`Yeah it's working`);
+const hobbies = ['Games', 'Javascript',];
+const activeHobbies = ['Hiking'];
+activeHobbies.push(...hobbies);
+console.log(activeHobbies);
+const personSpread = {
+    name: 'Rob',
+    age: 33
+};
+const copiedPerson = Object.assign({}, personSpread);
+console.log(copiedPerson);
+const addRestParameters = (...numbers) => {
+    let result = 0;
+    numbers.forEach(number => result += number);
+    return result;
+};
+console.log(addRestParameters(5, 10, 24, 53, 48, 38));
