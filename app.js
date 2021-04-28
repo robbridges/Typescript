@@ -1,6 +1,7 @@
+"use strict";
 // we don't know what user input would supply us, so we throw it as an unknown variable. better than any!
-var userInput;
-var userName;
+let userInput;
+let userName;
 userInput = 5;
 userInput = 'Max';
 // we have to type check userInput before we assign userName to user input
