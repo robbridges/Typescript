@@ -17,7 +17,7 @@ const activeHobbies = ['Hiking'];
 activeHobbies.push(...hobbies);
 console.log(activeHobbies);
 const personSpread = {
-    name: 'Rob',
+    personName: 'Rob',
     age: 33
 };
 const copiedPerson = Object.assign({}, personSpread);
@@ -28,3 +28,7 @@ const addRestParameters = (...numbers) => {
     return result;
 };
 console.log(addRestParameters(5, 10, 24, 53, 48, 38));
+/* array destrucring, does not change the origional value, just copies it */
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+const { personName, age, } = personSpread;
+console.log(personName, age);
