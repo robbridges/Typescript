@@ -3,6 +3,8 @@ class Person {
     constructor(name, age) {
         this.name = name;
         this.age = age;
+        this.name = name;
+        this.age = age;
     }
     greet(greeting) {
         console.log(`${greeting} ${user1.name}`);
