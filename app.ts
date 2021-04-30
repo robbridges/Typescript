@@ -1,7 +1,20 @@
-interface Greetable {
+//type AddFn= (a: number, b: number) => number;
+
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+let addinInterface: AddFn;
+
+addinInterface =(number1: number, number2: number) => {
+  return number1 + number2;
+};
+
+interface Named {
   readonly name: string;
-  
-  
+}
+
+interface Greetable extends Named {
   greet(phrase: string): void;
 }
 

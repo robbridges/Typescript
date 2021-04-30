@@ -1,4 +1,9 @@
 "use strict";
+//type AddFn= (a: number, b: number) => number;
+let addinInterface;
+addinInterface = (number1, number2) => {
+    return number1 + number2;
+};
 class Person {
     constructor(name, age) {
         this.name = name;
