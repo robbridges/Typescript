@@ -19,15 +19,50 @@ class Department {
         console.log(this.employees);
     }
 }
-
 class Accounting extends Department {
-  
+    constructor(id, managers, reports) {
+        super(id, 'Accounting'); // declare super before any properties
+        this.managers = managers;
+        this.reports = reports;
+        this.lastReport = '';
+    }
+    get mostRecentReport() {
+        if (this.lastReport) {
+            return this.lastReport;
+        }
+        return "hmm, no reports that's not good";
+    }
+    set mostRecentReport(value) {
+        this.addReport(value);
+    }
+    addReport(text) {
+        this.reports.push(text);
+        this.lastReport = text;
+    }
+    printReports() {
+        console.log(this.reports);
+    }
+    addEmployee(name) {
+        if (name === 'Jenny') {
+            console.log('woot woot!');
+        }
+        this.employees.push(name);
+    }
+    printLastReport() {
+        console.log(this.lastReport);
+    }
 }
 const development = new Department('1', 'Development');
-development.addEmployee('Rob');
-development.addEmployee('Thom');
+const accounting = new Accounting('2', ['Tommy', 'Billy'], []);
+accounting.addEmployee('Tommy');
+accounting.addEmployee('Billy');
+accounting.addEmployee('Jessica');
+accounting.addEmployee('Jenny');
 development.describe();
-development.printEmployeeInfo();
+accounting.mostRecentReport = 'Lalala broke';
+accounting.printReports();
+console.log(accounting.mostRecentReport);
+console.log(accounting);
 // this will cause an error, in this instance this is refeering to the object that called it, accounting copy. Where a name was never described.
 // const accountingCopy = {  describe: development.describe}
 // console.log(accountingCopy.describe()); 
