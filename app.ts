@@ -1,42 +1,36 @@
-// we don't know what user input would supply us, so we throw it as an unknown variable. better than any!
-let userInput: unknown;
-let userName: string;
+  class Department {
+  name: string;
+  private employees: string[] = []; // making it private so that it needs to be declared within the class ts feature only
 
+  constructor(name: string) {
+    this.name = name;
+    
+  }
 
-userInput = 5;
-userInput = 'Max';
+  describe(this: Department) {
+    console.log(`Department: ${this.name}`);
+  }
 
-// we have to type check userInput before we assign userName to user input
-if (typeof userInput === 'string') {
-  userName = userInput;
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInfo() {
+    console.log(this.employees.length);
+    console.log(this.employees)
+  }
 }
-// this function throws an object error, it should never actually return anything as the throws keyword crashes our script. 
-function generateError(message: string, code: number): never {
-  throw {message: message, errorCode: code};
-}
 
-const hobbies = ['Games', 'Javascript',];
-const activeHobbies = ['Hiking'];
-activeHobbies.push(...hobbies);
-console.log(activeHobbies);
+const development = new Department('Development');
+development.addEmployee('Rob');
+development.addEmployee('Thom');
+development.describe();
+development.printEmployeeInfo();
+// this will cause an error, in this instance this is refeering to the object that called it, accounting copy. Where a name was never described.
+// const accountingCopy = {  describe: development.describe}
 
-const personSpread = {
-  personName: 'Rob',
-  age: 33
-}
-const copiedPerson ={ ...personSpread };
-console.log(copiedPerson);
+// console.log(accountingCopy.describe()); 
 
-const addRestParameters = (...numbers: number[]): number => {
-  let result = 0;
-  numbers.forEach(number => result += number);
-  return result;
-};
+// const accountDepartment ={ name: 'Accounting', describe: development.describe} 
 
-console.log(addRestParameters(5,10,24,53,48,38));
-/* array destrucring, does not change the origional value, just copies it */
-const [hobby1,hobby2, ...remainingHobbies] = hobbies; 
-
-const { personName, age, } = personSpread;
-
-console.log(personName, age);
+// accountDepartment.describe();
