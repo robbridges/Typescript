@@ -1,11 +1,15 @@
 "use strict";
 class Department {
-    constructor(name) {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+        //name: string;
         this.employees = []; // making it private so that it needs to be declared within the class ts feature only
+        this.id = id;
         this.name = name;
     }
     describe() {
-        console.log(`Department: ${this.name}`);
+        console.log(`Department number: ${this.id} Department name: ${this.name}`);
     }
     addEmployee(employee) {
         this.employees.push(employee);
@@ -15,7 +19,11 @@ class Department {
         console.log(this.employees);
     }
 }
-const development = new Department('Development');
+
+class Accounting extends Department {
+  
+}
+const development = new Department('1', 'Development');
 development.addEmployee('Rob');
 development.addEmployee('Thom');
 development.describe();

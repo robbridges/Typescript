@@ -1,17 +1,19 @@
   class Department {
-  name: string;
+  //name: string;
   private employees: string[] = []; // making it private so that it needs to be declared within the class ts feature only
 
-  constructor(name: string) {
+  constructor(private readonly id: string, public name: string) {
+    this.id = id;
     this.name = name;
     
   }
 
   describe(this: Department) {
-    console.log(`Department: ${this.name}`);
+    console.log(`Department number: ${this.id} Department name: ${this.name}`);
   }
 
   addEmployee(employee: string) {
+    
     this.employees.push(employee);
   }
 
@@ -21,7 +23,7 @@
   }
 }
 
-const development = new Department('Development');
+const development = new Department('1', 'Development');
 development.addEmployee('Rob');
 development.addEmployee('Thom');
 development.describe();
