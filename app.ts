@@ -1,16 +1,20 @@
-  class Department {
-  //name: string;
+  abstract class Department {
+  static fiscalYear = 2021;
   protected employees: string[] = []; // making it private so that it needs to be declared within the class ts feature only
 
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     this.id = id;
     this.name = name;
     
   }
 
-  describe(this: Department) {
-    console.log(`Department number: ${this.id} Department name: ${this.name}`);
+  static createEmployee(name: string) {
+    return {name: name};
   }
+
+  abstract describe(this: Department): void;
+    
+  
 
   addEmployee(employee: string) {
     
@@ -22,6 +26,10 @@
     console.log(this.employees)
   }
 }
+
+const employee1 = Department.createEmployee('Rob');
+
+console.log(employee1, Department.fiscalYear);
 
 class Accounting extends Department {
   private lastReport: string = '';
@@ -40,6 +48,10 @@ class Accounting extends Department {
   constructor(id: string, public managers: string[], private reports: string[], ) {
     super(id, 'Accounting'); // declare super before any properties
     
+  }
+
+  describe() {
+    console.log(`Accounting department -ID ${this.id}`)
   }
 
   
@@ -61,18 +73,18 @@ class Accounting extends Department {
   }
 }
 
-const development = new Department('1', 'Development');
+
 const accounting = new Accounting('2', ['Tommy', 'Billy'],[]);
 accounting.addEmployee('Tommy');
 accounting.addEmployee('Billy');
-accounting.addEmployee('Jessica');
-accounting.addEmployee('Jenny');
-development.describe();
+
+
+accounting.describe();
 accounting.mostRecentReport = 'Lalala broke';
 
 accounting.printReports();
 console.log(accounting.mostRecentReport);
-console.log(accounting);
+
 
 // this will cause an error, in this instance this is refeering to the object that called it, accounting copy. Where a name was never described.
 // const accountingCopy = {  describe: development.describe}

@@ -3,13 +3,12 @@ class Department {
     constructor(id, name) {
         this.id = id;
         this.name = name;
-        //name: string;
         this.employees = []; // making it private so that it needs to be declared within the class ts feature only
         this.id = id;
         this.name = name;
     }
-    describe() {
-        console.log(`Department number: ${this.id} Department name: ${this.name}`);
+    static createEmployee(name) {
+        return { name: name };
     }
     addEmployee(employee) {
         this.employees.push(employee);
@@ -19,6 +18,9 @@ class Department {
         console.log(this.employees);
     }
 }
+Department.fiscalYear = 2021;
+const employee1 = Department.createEmployee('Rob');
+console.log(employee1, Department.fiscalYear);
 class Accounting extends Department {
     constructor(id, managers, reports) {
         super(id, 'Accounting'); // declare super before any properties
@@ -34,6 +36,9 @@ class Accounting extends Department {
     }
     set mostRecentReport(value) {
         this.addReport(value);
+    }
+    describe() {
+        console.log(`Accounting department -ID ${this.id}`);
     }
     addReport(text) {
         this.reports.push(text);
@@ -52,17 +57,13 @@ class Accounting extends Department {
         console.log(this.lastReport);
     }
 }
-const development = new Department('1', 'Development');
 const accounting = new Accounting('2', ['Tommy', 'Billy'], []);
 accounting.addEmployee('Tommy');
 accounting.addEmployee('Billy');
-accounting.addEmployee('Jessica');
-accounting.addEmployee('Jenny');
-development.describe();
+accounting.describe();
 accounting.mostRecentReport = 'Lalala broke';
 accounting.printReports();
 console.log(accounting.mostRecentReport);
-console.log(accounting);
 // this will cause an error, in this instance this is refeering to the object that called it, accounting copy. Where a name was never described.
 // const accountingCopy = {  describe: development.describe}
 // console.log(accountingCopy.describe()); 
