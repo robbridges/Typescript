@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 const e1 = {
     name: 'Rob',
     privileges: ['create-server'],
@@ -10,8 +11,14 @@ function add(argument1, argument2) {
     }
     return argument1 + argument2;
 }
-const result = add('Rob', 'Bridges');
+const result = add('Rob', ' Bridges');
 result.split('');
+const axiosUserData = {
+    id: 'u1',
+    name: 'Rob',
+    job: { title: 'Developer', description: 'He makes the computer go brr' },
+};
+console.log((_a = axiosUserData === null || axiosUserData === void 0 ? void 0 : axiosUserData.job) === null || _a === void 0 ? void 0 : _a.title); // this is type script chaining, we're basically making sure that the object exists or not. 
 function printEmployeeInformation(employee) {
     console.log(`Name: ${employee.name}`);
     // this the type of if check we need to for Types as we can't check privledges until typescript knows it exists. 

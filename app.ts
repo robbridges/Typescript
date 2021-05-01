@@ -25,7 +25,7 @@ type Numeric = number | boolean;
 type Unerviseral = Combinable & Numeric;
 
 function add(argument1: string, argument2: string): string;
-function add(argument1: number, argument2: number): number
+function add(argument1: number, argument2: number): number;
 function add(argument1: Combinable, argument2: Combinable) {
 
   if (typeof argument1 === 'string' || typeof argument2 === 'string') {
@@ -35,8 +35,16 @@ function add(argument1: Combinable, argument2: Combinable) {
   return argument1 + argument2;
 }
 
-const result = add('Rob', 'Bridges');
+const result = add('Rob', ' Bridges');
 result.split('')
+
+const axiosUserData = {
+  id: 'u1',
+  name: 'Rob',
+  job: {title: 'Developer', description: 'He makes the computer go brr'},
+}
+
+console.log(axiosUserData?.job?.title); // this is type script chaining, we're basically making sure that the object exists or not. 
 
 function printEmployeeInformation(employee: UnknownEmployee) {
   console.log(`Name: ${employee.name}`);
