@@ -60,3 +60,6 @@ function moveAnimal(animal) {
 }
 moveAnimal({ type: 'bird', flyingSpeed: 50 });
 moveAnimal({ type: 'horse', runningSpeed: 30 });
+//const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
+const userInputElement = document.getElementById('user-input'); // better way to do this to not conflict with react JSX
+userInputElement.value = 'Hi there!';
