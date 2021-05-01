@@ -44,6 +44,11 @@ const axiosUserData = {
   job: {title: 'Developer', description: 'He makes the computer go brr'},
 }
 
+const userInputNull = '';
+const storedData = userInputNull ?? 'DEFAULT'; // if the first item is null or undefined it will go to default, but it will print the empty string
+console.log(storedData);
+
+
 console.log(axiosUserData?.job?.title); // this is type script chaining, we're basically making sure that the object exists or not. 
 
 function printEmployeeInformation(employee: UnknownEmployee) {
