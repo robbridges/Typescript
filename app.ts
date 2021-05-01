@@ -11,7 +11,8 @@ addinInterface =(number1: number, number2: number) => {
 };
 
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string;
 }
 
 interface Greetable extends Named {
