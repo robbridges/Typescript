@@ -45,3 +45,18 @@ function useVehicle(vehicle) {
 }
 useVehicle(vehicle1);
 useVehicle(vehicle2);
+function moveAnimal(animal) {
+    // while we can use 'flyingSpeed | runningSpeed in animal' this becomes burdensome if we add more animals and introduces more code errors. A better option is below
+    let speed;
+    switch (animal.type) {
+        case 'bird':
+            speed = animal.flyingSpeed;
+            break;
+        case 'horse':
+            speed = animal.runningSpeed;
+            break;
+    }
+    console.log(`${animal.type} is Moving at speed: ${speed}`);
+}
+moveAnimal({ type: 'bird', flyingSpeed: 50 });
+moveAnimal({ type: 'horse', runningSpeed: 30 });
