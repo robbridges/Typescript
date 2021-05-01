@@ -1,37 +1,64 @@
-//type AddFn= (a: number, b: number) => number;
+type Admin = {
+  name: string;
+  privileges: string[];
 
-interface AddFn {
-  (a: number, b: number): number;
-}
-
-let addinInterface: AddFn;
-
-addinInterface =(number1: number, number2: number) => {
-  return number1 + number2;
 };
 
-interface Named {
-  readonly name?: string;
-  outputName?: string;
+type Employee = {
+  name: string;
+  startDate: Date;
+
+};
+
+type ElevatedEmployee = Admin & Employee;
+
+const e1: ElevatedEmployee = {
+  name: 'Rob',
+  privileges: ['create-server'],
+  startDate: new Date(),
 }
 
-interface Greetable extends Named {
-  greet(phrase: string): void;
-}
+type UnknownEmployee = Employee | Admin;
 
-class Person implements Greetable {
-  
-  constructor(public name: string, public age: number) {
-    this.name = name;
-    this.age = age;
+type Combinable = string | number;
+type Numeric = number | boolean;
+type Unerviseral = Combinable & Numeric;
+
+function add(argument1: Combinable, argument2: Combinable) {
+
+  if (typeof argument1 === 'string' || typeof argument2 === 'string') {
+    return argument1.toString() + argument2.toString();
   }
-  greet(greeting: string) {
-    console.log(`${greeting} ${user1.name}`);
+
+  return argument1 + argument2;
+}
+
+function printEmployeeInformation(employe: UnknownEmployee) {
+  console.log(`Name: ${employe.name}`);
+  // this the type of if check we need to for Types as we can't check privledges until typescript knows it exists. 
+  if ('privileges' in employe) {
+    console.log(`Privileges: ${employe.privileges}`);
+  }
+  if ('startDate' in employe) {
+    console.log(`Start Date: ${employe.startDate}`);
+  }
+
+}
+
+printEmployeeInformation(e1);
+
+class Car {
+  drive() {
+    console.log('Driving...');
   }
 }
 
-let user1: Person;
+class Truck {
+  drive() {
+    console.log('Driving a truck!');
+  }
+  loadCargo(amount: number) {
+    
+  }
+}
 
-user1 = new Person('Rob', 33);
-
-user1.greet('sup');
