@@ -33,14 +33,14 @@ function add(argument1: Combinable, argument2: Combinable) {
   return argument1 + argument2;
 }
 
-function printEmployeeInformation(employe: UnknownEmployee) {
-  console.log(`Name: ${employe.name}`);
+function printEmployeeInformation(employee: UnknownEmployee) {
+  console.log(`Name: ${employee.name}`);
   // this the type of if check we need to for Types as we can't check privledges until typescript knows it exists. 
-  if ('privileges' in employe) {
-    console.log(`Privileges: ${employe.privileges}`);
+  if ('privileges' in employee) {
+    console.log(`Privileges: ${employee.privileges}`);
   }
-  if ('startDate' in employe) {
-    console.log(`Start Date: ${employe.startDate}`);
+  if ('startDate' in employee) {
+    console.log(`Start Date: ${employee.startDate}`);
   }
 
 }
@@ -58,7 +58,24 @@ class Truck {
     console.log('Driving a truck!');
   }
   loadCargo(amount: number) {
-    
+    console.log(`Loading cargo: ${amount}`);
   }
 }
+
+type Vehicle = Car| Truck;
+
+const vehicle1 = new Car();
+const vehicle2 = new Truck();
+
+function useVehicle(vehicle: Vehicle) {
+  vehicle.drive();
+  //problem trying to use load Cargo need to do an if check. Instance of is best for classes
+  if (vehicle instanceof Truck) {
+    vehicle.loadCargo(10);
+  } 
+}
+
+useVehicle(vehicle1);
+useVehicle(vehicle2);
+
 
