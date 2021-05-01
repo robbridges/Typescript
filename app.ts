@@ -24,6 +24,8 @@ type Combinable = string | number;
 type Numeric = number | boolean;
 type Unerviseral = Combinable & Numeric;
 
+function add(argument1: string, argument2: string): string;
+function add(argument1: number, argument2: number): number
 function add(argument1: Combinable, argument2: Combinable) {
 
   if (typeof argument1 === 'string' || typeof argument2 === 'string') {
@@ -32,6 +34,9 @@ function add(argument1: Combinable, argument2: Combinable) {
 
   return argument1 + argument2;
 }
+
+const result = add('Rob', 'Bridges');
+result.split('')
 
 function printEmployeeInformation(employee: UnknownEmployee) {
   console.log(`Name: ${employee.name}`);
@@ -107,6 +112,20 @@ moveAnimal({type: 'bird', flyingSpeed: 50});
 moveAnimal({type: 'horse', runningSpeed: 30});
 
 //const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
-const userInputElement = document.getElementById('user-input')! as HTMLInputElement; // better way to do this to not conflict with react JSX
-userInputElement.value = 'Hi there!';
+//const userInputElement = document.getElementById('user-input')! as HTMLInputElement; // better way to do this to not conflict with react JSX. 
 
+// honestly the best way to do this, we're just just telling type script to shut up and sit down, we're checking to see if it exists, then type casting it. 
+const userInputElement = document.getElementById('user-input');
+
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value ='Hi there';
+}
+
+interface ErrorContainer {
+  [prop: string]: string; // we are essentially saying the prop will contain an property and string, though we may not know what the property name is
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email',
+  username: 'Tommy'
+}

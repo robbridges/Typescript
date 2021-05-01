@@ -10,6 +10,8 @@ function add(argument1, argument2) {
     }
     return argument1 + argument2;
 }
+const result = add('Rob', 'Bridges');
+result.split('');
 function printEmployeeInformation(employee) {
     console.log(`Name: ${employee.name}`);
     // this the type of if check we need to for Types as we can't check privledges until typescript knows it exists. 
@@ -61,5 +63,13 @@ function moveAnimal(animal) {
 moveAnimal({ type: 'bird', flyingSpeed: 50 });
 moveAnimal({ type: 'horse', runningSpeed: 30 });
 //const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
-const userInputElement = document.getElementById('user-input'); // better way to do this to not conflict with react JSX
-userInputElement.value = 'Hi there!';
+//const userInputElement = document.getElementById('user-input')! as HTMLInputElement; // better way to do this to not conflict with react JSX. 
+// honestly the best way to do this, we're just just telling type script to shut up and sit down, we're checking to see if it exists, then type casting it. 
+const userInputElement = document.getElementById('user-input');
+if (userInputElement) {
+    userInputElement.value = 'Hi there';
+}
+const errorBag = {
+    email: 'Not a valid email',
+    username: 'Tommy'
+};
