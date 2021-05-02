@@ -14,9 +14,23 @@
 
 /* passing in generic types instead of object allows us to tell typescript that we intend to merge the two types of Generics */
 
-function merge<T, U>(objA: T, objB: U ) {
+function merge<T extends object, U extends object>(objA: T, objB: U ) {
   return Object.assign(objA, objB);
 }
 
 const mergedObj = merge({name: 'Rob'}, {age: 33});
 console.log(mergedObj.age);
+
+interface Lengthy {
+  length: number;
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got no value";
+  if (element.length > 0) {
+    descriptionText = `Got ${element.length}`;
+  }
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe('Hi there!'));

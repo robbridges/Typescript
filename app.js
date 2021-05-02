@@ -15,3 +15,11 @@ function merge(objA, objB) {
 }
 const mergedObj = merge({ name: 'Rob' }, { age: 33 });
 console.log(mergedObj.age);
+function countAndDescribe(element) {
+    let descriptionText = "Got no value";
+    if (element.length > 0) {
+        descriptionText = `Got ${element.length}`;
+    }
+    return [element, descriptionText];
+}
+console.log(countAndDescribe('Hi there!'));
