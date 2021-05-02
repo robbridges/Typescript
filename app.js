@@ -35,9 +35,12 @@ class DataStorage {
         this.data.push(item);
     }
     removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
         this.data.splice(this.data.indexOf(item), 1);
     }
-    get items() {
+    getitems() {
         return [...this.data];
     }
 }
@@ -45,3 +48,4 @@ const textStorage = new DataStorage();
 textStorage.addItem('Rob');
 textStorage.addItem('Is');
 textStorage.addItem('Great');
+const numberStorage = new DataStorage();
