@@ -66,3 +66,28 @@ textStorage.addItem('Great');
 
 const numberStorage = new DataStorage<number>();
 
+
+// we are setting up a partial Coursegoal below (say we needed to validate ach input before returning the object) this can be done by using a Partial utility type
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string, 
+  description: 
+  string, date: Date
+  ): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+
+// we can set arrays to readonly, so that Typescript gets upset in we push or pop the array. We could also do this to objects!
+const names: Readonly<string []> = ['Rob', ' Developing'];
+// names.push('Shawn');
+

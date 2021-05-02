@@ -49,3 +49,13 @@ textStorage.addItem('Rob');
 textStorage.addItem('Is');
 textStorage.addItem('Great');
 const numberStorage = new DataStorage();
+function createCourseGoal(title, description, date) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
+}
+// we can set arrays to readonly, so that Typescript gets upset in we push or pop the array. We could also do this to objects!
+const names = ['Rob', ' Developing'];
+// names.push('Shawn');
