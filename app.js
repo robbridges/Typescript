@@ -34,5 +34,31 @@ Person1 = __decorate([
     Logger('Hey Rob'),
     WithTemplate('<h1> My Name is Rob </h1>', 'app') // executes the fuction logging template bottom up, but at initialization logger would create first
 ], Person1);
+function Log(target, propertyName) {
+    console.log('Property decorator');
+    console.log(target, propertyName);
+}
+class Product {
+    constructor(title, _price) {
+        this.title = title;
+        this._price = _price;
+    }
+    set price(value) {
+        if (value > 0) {
+            this._price = value;
+        }
+        else {
+            throw new Error('Price should be positive');
+        }
+    }
+    getPriceWithTax(tax) {
+        return this._price * (1 + tax);
+    }
+}
+__decorate([
+    Log
+], Product.prototype, "title", void 0);
 const person1 = new Person1();
 console.log(person1);
+const product = new Product('shirt', 3);
+console.log(product.getPriceWithTax(.10)); // making sure that the 

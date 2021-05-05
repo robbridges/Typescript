@@ -28,9 +28,38 @@ class Person1 {
   constructor() {
     console.log('Creating person object...');
   }
+}
 
+function Log(target: any, propertyName: string | symbol) {
+  console.log('Property decorator');
+  console.log(target, propertyName);
+}
+class Product {
+  @Log
+  title: string;
+  private _price: number;
+
+  set price(value: number) {
+    if (value > 0) {
+      this._price = value;
+    } else {
+      throw new Error('Price should be positive');
+    }
+    
+  }
   
+
+  constructor(  title:string,  _price: number) {
+    this.title =title;
+    this._price = _price;
+  }
+
+  getPriceWithTax(tax: number) {
+    return this._price * (1 + tax);
+  }
 }
 
 const person1 = new Person1();
 console.log(person1);
+const product = new Product('shirt', 3);
+console.log(product.getPriceWithTax(.10)); // making sure that the 
