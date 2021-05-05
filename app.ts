@@ -1,4 +1,4 @@
-function Logger() {
+function Logger(logString: string) {
   return function(constructor: Function) {
     console.log('logging');
     console.log(constructor);
@@ -6,7 +6,7 @@ function Logger() {
   
 }
 
-@Logger()
+@Logger('Logging - Person')
 class Person1 {
   name = "Rob";
 
