@@ -90,3 +90,32 @@ const person1 = new Person1();
 console.log(person1);
 const product = new Product('shirt', 3);
 console.log(product.getPriceWithTax(.10)); // making sure that the 
+function Required() { }
+function PositiveNumber() { }
+function validate(obj) { }
+class Course {
+    constructor(title, price) {
+        this.title = title;
+        this.price = price;
+    }
+}
+__decorate([
+    Required
+], Course.prototype, "title", void 0);
+__decorate([
+    PositiveNumber
+], Course.prototype, "price", void 0);
+const courseForm = document.querySelector('form');
+courseForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const titleElement = document.getElementById('title');
+    const priceElement = document.getElementById('price');
+    const title = titleElement.value;
+    const price = +priceElement.value;
+    const createdCourse = new Course(title, price);
+    if (!validate(createdCourse)) {
+        alert('Invalid input, please try again');
+        return;
+    }
+    console.log(createdCourse);
+});
