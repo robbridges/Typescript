@@ -90,9 +90,33 @@ const person1 = new Person1();
 console.log(person1);
 const product = new Product('shirt', 3);
 console.log(product.getPriceWithTax(.10)); // making sure that the 
-function Required() { }
-function PositiveNumber() { }
-function validate(obj) { }
+const registeredValidator = {};
+function Required(target, propName) {
+    registeredValidator[target.constructor.name] = Object.assign(Object.assign({}, registeredValidator[target.constructor.name]), { [propName]: ['required'] });
+}
+function PositiveNumber(target, propName) {
+    registeredValidator[target.constructor.name] = Object.assign(Object.assign({}, registeredValidator[target.constructor.name]), { [propName]: ['positive'] });
+}
+function validate(obj) {
+    const objValidatorConfig = registeredValidator[obj.constructor.name];
+    if (!objValidatorConfig) {
+        return true;
+    }
+    let isValid = true;
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) {
+            switch (validator) {
+                case 'required':
+                    isValid = isValid && !!obj[prop];
+                    break;
+                case 'positive':
+                    isValid = isValid && obj[prop] > 0;
+                    break;
+            }
+        }
+    }
+    return isValid;
+}
 class Course {
     constructor(title, price) {
         this.title = title;

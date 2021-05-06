@@ -85,11 +85,49 @@ console.log(person1);
 const product = new Product('shirt', 3);
 console.log(product.getPriceWithTax(.10)); // making sure that the 
 
-function Required() {}
+interface ValidatorConfig {
+  [property: string]: {
+    [validateableProperty: string]: string[]
+  }
+}
 
-function PositiveNumber() {}
+const registeredValidator: ValidatorConfig = {};
 
-function validate(obj: object): boolean {}
+function Required(target: any, propName: string) {
+  registeredValidator[target.constructor.name] = {
+    ...registeredValidator[target.constructor.name],
+    [propName]: ['required']
+  };
+}
+
+function PositiveNumber(target: any, propName: string) {
+  registeredValidator[target.constructor.name] = {
+    ...registeredValidator[target.constructor.name],
+    [propName]: ['positive']
+  };
+}
+
+function validate(obj: any) {
+  const objValidatorConfig = registeredValidator[obj.constructor.name];
+  if (!objValidatorConfig) {
+    return true;
+  }
+  let isValid = true;
+  for (const prop in objValidatorConfig) {
+    for (const validator of objValidatorConfig[prop]) {
+      switch (validator) {
+        case 'required':
+          isValid = isValid && !!obj[prop];
+          break;
+        case 'positive': 
+          isValid = isValid && obj[prop] > 0;
+          break;
+      }
+    }
+  }
+  return isValid;
+
+}
 
 class Course {
   @Required
